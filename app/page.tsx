@@ -111,15 +111,14 @@ export default function Home() {
           )}
           {step === STEPS.PREVIEW && (
             <div className="rounded flex flex-col gap-4">
-              <div className="">
-                <iframe
-                  srcDoc="{result}"
-                  className="w-full h h-full border-4 rounded border-gray-700  aspect-video"
-                  style={{ backgroundColor: `? #${background} ? background.trim() : 'fff'` }}
-                ></iframe>
+              <div
+                style={{ backgroundColor: `#${background ? background.trim() : 'fff'}` }}
+                className="w-full h h-full border-4 rounded border-gray-700  aspect-video"
+              >
+                <iframe srcDoc={html} className="w-full h h-full "></iframe>
               </div>
               <pre className="">
-                <code>{html.trim()}</code>
+                <code>{html}</code>
               </pre>
             </div>
           )}

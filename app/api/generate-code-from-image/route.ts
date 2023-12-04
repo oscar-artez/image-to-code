@@ -22,7 +22,7 @@ In terms of libraries,
 - You can use Google Fonts
 - Font Awesome for icons: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
 
-Return a first the background hexadecimals, put ||| sepaator, and then all the code.
+Return a first the background hexadecimals, put ||| separator, and then all the code.
 Do not include markdown "\`\`\`" or "\`\`\`html" at the start or end.
 """`
 
@@ -37,7 +37,7 @@ const openai = new OpenAI({
 export async function POST(req: Request) {
   // Extract the `messages` from the body of the request
   const { url, img } = await req.json()
-  const image_url = url ?? url
+  const image_url = url ?? img
 
   // Request the OpenAI API for the response based on the prompt
   const response = await openai.chat.completions.create({
