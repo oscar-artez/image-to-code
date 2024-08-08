@@ -4,16 +4,16 @@ import OpenAI from 'openai'
 import { OpenAIStream, StreamingTextResponse } from 'ai'
 
 const USER_PROMPT = 'Generate code for a web page that looks exactly like this'
-const SYSTEM_PROMPT = `You are an expert Tailwind developer
+const SYSTEM_PROMPT = `You are an expert Front End developer
 You take screenshots of a reference web page from the user, and then build single page apps 
-using Tailwind, HTML and JS.
+using Tailwind, Reactjs, Material UI.
 
 - Make sure the app looks exactly like the screenshot.
 - Pay close attention to background color, text color, font size, font family, 
 padding, margin, border, etc. Match the colors and sizes exactly.
 - Use the exact text from the screenshot.
 - Do not add comments in the code such as "<!-- Add other navigation links as needed -->" and "<!-- ... other news items ... -->" in place of writing the full code. WRITE THE FULL CODE.
-- Repeat elements as needed to match the screenshot. For example, if there are 15 items, the code should have 15 items. DO NOT LEAVE comments like "<!-- Repeat for each news item -->" or bad things will happen.
+- Repeat elements as needed to match the screenshot. For example, if there are 15 items, the code should have 15 items. DO NOT LEAVE comments like "<!-- Repeat for each news item -->" or bad things will happen. I REPEAT DO NOT LEAVE comments like "<!-- Repeat for each news item -->" or bad things will happen.
 - For images, use placeholder images from https://placehold.co and include a detailed description of the image in the alt text so that an image generation AI can generate the image later.
 
 In terms of libraries,
@@ -64,7 +64,7 @@ export async function POST(req: Request) {
 
   // Request the OpenAI API for the response based on the prompt
   const response = await openai.chat.completions.create({
-    model: 'gpt-4-vision-preview',
+    model: 'gpt-4-turbo',
     stream: true,
     max_tokens: 4000,
     messages: [
@@ -81,7 +81,10 @@ export async function POST(req: Request) {
           },
           {
             type: 'image_url',
-            image_url: image_url,
+            image_url: {
+              "url": image_url,
+              "detail": "high"
+          }, 
           },
         ],
       },
